@@ -89,34 +89,34 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["slide"]}>
             <Heading>Is this still a thing?</Heading>
-              <List>
+            <List>
+              <Appear>
                 <ListItem>
-                  <Appear>
-                    <a href="https://www.thequint.com/blogs/2016/11/08/indian-embassy-hacks-global-hackers-community-kapustkiy-kasimierz-l">
-                      Indian Embassy Hacks - November
-                    </a>
-                  </Appear>
+                  <a href="https://www.thequint.com/blogs/2016/11/08/indian-embassy-hacks-global-hackers-community-kapustkiy-kasimierz-l">
+                    Indian Embassy Hacks - November
+                  </a>
                 </ListItem>
+              </Appear>
+              <Appear>
                 <ListItem>
-                  <Appear>
-                    <a href="http://www.azfamily.com/story/32945105/hack-that-targeted-arizona-voter-database-was-easy-to-prevent-expert-says">
-                      Arizona Voter Registration Database - September
-                    </a>
-                  </Appear>
+                  <a href="http://www.azfamily.com/story/32945105/hack-that-targeted-arizona-voter-database-was-easy-to-prevent-expert-says">
+                    Arizona Voter Registration Database - September
+                  </a>
                 </ListItem>
+              </Appear>
+              <Appear>
                 <ListItem>
-                  <Appear>
-                    <a href="http://www.eweek.com/security/hacking-of-ubuntu-linux-forums-lessons-learned.html">
-                      Ubuntu Forums of 2 million usernames - July
-                    </a>
-                  </Appear>
+                  <a href="http://www.eweek.com/security/hacking-of-ubuntu-linux-forums-lessons-learned.html">
+                    Ubuntu Forums of 2 million usernames - July
+                  </a>
                 </ListItem>
+              </Appear>
+              <Appear>
                 <ListItem>
-                  <Appear>
-                    <Heading>YES!</Heading>
-                  </Appear>
+                  <Heading>YES!</Heading>
                 </ListItem>
-              </List>
+              </Appear>
+            </List>
           </Slide>
           <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
             <CodePane
