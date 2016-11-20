@@ -1,9 +1,10 @@
 import React from 'react'
 
-const view = ({ id, username, email }) => (
+const view = ({ id, username, email, onClick }) => (
   <div>
-    <p><a href={`/user?id=${id}`}>{username}</a></p>
+    <p onClick={onClick(username)}>{username}</p>
     <p>{email}</p>
+    <p onClick={onClick(`"; show tables; -- lulz`)}>So dodge</p>
   </div>
 )
 

@@ -1,0 +1,9 @@
+def some_sql
+  sql = "select u.id, u.email, p.id from users u
+        join pages p on p.owner_id = u.id
+        and p.created_at between #{ActiveRecord::Base.sanitize(min_page_created_date.strftime('%F'))}
+          and #{ActiveRecord::Base.sanitize(max_page_created_date.strftime('%F'))}
+        and p.owner_type = 'User'
+        and u.id not in (select user_id from posts
+          where created_at > #{ActiveRecord::Base.sanitize(last_post_date.strftime('%F'))})"
+end

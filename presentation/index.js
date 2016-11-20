@@ -1,5 +1,6 @@
 // Import React
 import React from "react";
+import axios from 'axios'
 
 // Import Spectacle Core tags
 import {
@@ -28,13 +29,9 @@ import preloader from "spectacle/lib/utils/preloader";
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
-// Import custom component
-import Interactive from "../assets/interactive";
-
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
-
 
 const images = {
   city: require("../assets/city.jpg"),
@@ -43,8 +40,10 @@ const images = {
   markdown: require("../assets/markdown.png"),
   hackerHoodie: require("../assets/hacker-hacking-dark-hoodie.jpg"),
   epicDance: require("../assets/epic-smiley-dance.gif"),
-};
+  mindBlown: require("../assets/mindBlown.gif")
+}
 
+const codeExample = { escapeRb: require('raw!../assets/escape.example') }
 preloader(images);
 
 const theme = createTheme({
@@ -52,6 +51,10 @@ const theme = createTheme({
 });
 
 export default class Presentation extends React.Component {
+  constructor() {
+    super()
+  }
+
   render() {
     return (
       <Spectacle theme={theme}>
@@ -83,7 +86,7 @@ export default class Presentation extends React.Component {
               <Appear><ListItem><Image src={images.epicDance.replace("/", "")} margin="0px auto 40px" height="280px" /></ListItem></Appear>
             </List>
           </Slide>
-          <Slide transition={["slide"]}>
+          <Slide transition={["slide"]} bgColor="black">
             <Heading>What is SQLi?</Heading>
             <BlockQuote><Quote>Allowing execution of arbitrary SQL through unfiltered user input</Quote><Cite></Cite></BlockQuote>
           </Slide>
@@ -123,25 +126,34 @@ export default class Presentation extends React.Component {
               lang="sql"
               margin="20px auto"
             >
-              "); select * from users; -- lulz
+              "; select * from posts; -- lulz
             </CodePane>
+            <Heading>
+              <Appear><a href='http://localhost:1338/api/user?username="; select * from posts; -- lulz'>Show some lulz</a></Appear>
+            </Heading>
+            <Appear><Image src={images.mindBlown.replace("/", "")} margin="0px auto 40px" height="500px"/></Appear>
           </Slide>
-          <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
-            <Appear fid="1">
-              <Heading size={1} caps fit textColor="primary">
-                Full Width
-              </Heading>
-            </Appear>
-            <Appear fid="2">
-              <Heading size={1} caps fit textColor="tertiary">
-                Adjustable Darkness
-              </Heading>
-            </Appear>
-            <Appear fid="3">
-              <Heading size={1} caps fit textColor="primary">
-                Background Imagery
-              </Heading>
-            </Appear>
+          <Slide transition={["zoom", "fade"]} bgColor="primary">
+            <Heading>Bad example is bad</Heading>
+            <Heading><a href="http://localhost:1338/users">App</a></Heading>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading>How do we guard against it?</Heading>
+            <List>
+              <Appear><ListItem>ORM</ListItem></Appear>
+              <Appear><ListItem>Query parameters</ListItem></Appear>
+              <Appear><ListItem>Keep systems up to date</ListItem></Appear>
+              <Appear><ListItem>Keep gems/modules up to date</ListItem></Appear>
+              <Appear><ListItem>Escape</ListItem></Appear>
+            </List>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading>Escape Example</Heading>
+            <CodePane
+              lang="ruby"
+              margin="20px auto"
+              source={codeExample.escapeRb}
+            />
           </Slide>
           <Slide transition={["zoom", "fade"]} bgColor="primary">
             <Heading caps fit>Flexible Layouts</Heading>
@@ -196,12 +208,6 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
               <Appear><ListItem>PDF export</ListItem></Appear>
               <Appear><ListItem>And...</ListItem></Appear>
             </List>
-          </Slide>
-          <Slide transition={["slide"]} bgColor="primary">
-            <Heading size={1} caps fit textColor="tertiary">
-              Your presentations are interactive
-            </Heading>
-            <Interactive/>
           </Slide>
           <Slide transition={["spin", "slide"]} bgColor="tertiary">
             <Heading size={1} caps fit lineHeight={1.5} textColor="primary">

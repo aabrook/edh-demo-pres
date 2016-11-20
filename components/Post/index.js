@@ -1,4 +1,5 @@
 import React from 'react'
+import functional from 'react-functional'
 
 const view = ({ title, post }) => (
   <div>
@@ -15,6 +16,8 @@ const form = ({ title, post }) => (
   </form>
 )
 
-export default (props) => (
+const render = (props) => (
   props.form ? form(props) : view(props)
 )
+
+export default functional({ render })
