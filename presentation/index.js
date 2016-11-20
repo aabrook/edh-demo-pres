@@ -40,7 +40,8 @@ const images = {
   markdown: require("../assets/markdown.png"),
   hackerHoodie: require("../assets/hacker-hacking-dark-hoodie.jpg"),
   epicDance: require("../assets/epic-smiley-dance.gif"),
-  mindBlown: require("../assets/mindBlown.gif")
+  mindBlown: require("../assets/mindBlown.gif"),
+  sad: require("../assets/sad.gif")
 }
 
 const codeExample = { escapeRb: require('raw!../assets/escape.example') }
@@ -63,16 +64,12 @@ export default class Presentation extends React.Component {
             <Heading size={1} fit caps lineHeight={1} textColor="black">
               Security
             </Heading>
-            <Appear fid={1}>
-              <Heading size={1} fit caps>
-                SQL Injection
-              </Heading>
-            </Appear>
-            <Appear fid={2}>
-              <Heading size={1} fit caps textColor="black">
-                XSS - Cross Site Scripting
-              </Heading>
-            </Appear>
+            <Heading size={1} fit caps>
+              SQL Injection
+            </Heading>
+            <Heading size={1} fit caps textColor="black">
+              XSS - Cross Site Scripting
+            </Heading>
           </Slide>
           <Slide transition={["slide"]} bgColor="black">
             <Image src={images.hackerHoodie.replace("/", "")} margin="0px auto 40px" height="500px"/>
@@ -154,6 +151,9 @@ export default class Presentation extends React.Component {
               margin="20px auto"
               source={codeExample.escapeRb}
             />
+          </Slide>
+          <Slide transition={["fade"]}>
+            <Image src={images.sad.replace("/", "")} margin="0px auto 40px" height="500px"/>
           </Slide>
           <Slide transition={["zoom", "fade"]} bgColor="primary">
             <Heading caps fit>Flexible Layouts</Heading>
