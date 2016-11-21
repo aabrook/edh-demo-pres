@@ -85,7 +85,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["slide"]} bgColor="black">
             <Heading>What is SQLi?</Heading>
-            <BlockQuote><Quote>Allowing execution of arbitrary SQL through unfiltered user input</Quote><Cite></Cite></BlockQuote>
+            <BlockQuote><Quote>Allowing execution of arbitrary SQL through unfiltered user input</Quote></BlockQuote>
           </Slide>
           <Slide transition={["slide"]}>
             <Heading>Is this still a thing?</Heading>
@@ -137,10 +137,10 @@ export default class Presentation extends React.Component {
           <Slide transition={["slide"]}>
             <Heading>How do we guard against it?</Heading>
             <List>
-              <Appear><ListItem>ORM</ListItem></Appear>
-              <Appear><ListItem>Query parameters</ListItem></Appear>
-              <Appear><ListItem>Keep systems up to date</ListItem></Appear>
-              <Appear><ListItem>Keep gems/modules up to date</ListItem></Appear>
+              <ListItem>ORM</ListItem>
+              <ListItem>Query parameters</ListItem>
+              <ListItem>Keep systems up to date</ListItem>
+              <ListItem>Keep gems/modules up to date</ListItem>
               <Appear><ListItem>Escape</ListItem></Appear>
             </List>
           </Slide>
@@ -154,6 +154,51 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["fade"]}>
             <Image src={images.sad.replace("/", "")} margin="0px auto 40px" height="500px"/>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading>XSS - Cross Site Scripting</Heading>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="primary">
+            <Heading>What is XSS?</Heading>
+            <p>
+              Cross-site scripting (XSS) is a type of computer security vulnerability typically found in web applications. XSS enables attackers to inject client-side scripts into web pages viewed by other users
+            </p>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading>Types of XSS</Heading>
+            <List>
+              <ListItem>Reflected</ListItem>
+              <ListItem>Persisted</ListItem>
+            </List>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading>Reflected</Heading>
+            <CodePane type="javascript">http://some_url.com/q=?&lt;script&gt;alert('boom')&lt;script&gt;</CodePane>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading>Persisted</Heading>
+            <CodePane type="javascript">
+              &lt;script&gt;
+                document.write(&apos;&lt;body&gt;&lt;h1&gt;Haxored!&lt;/h1&gt;&lt;/body&gt;&apos;)
+              &lt;/script&gt;
+            </CodePane>
+            <CodePane type="javascript">
+              &lt;script&gt;
+              window.location = 'http://download-my-game-plz.com'
+              &lt;/script&gt;
+            </CodePane>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading>How do we stop it?</Heading>
+            <List>
+              <ListItem>Escape all the things!</ListItem>
+            </List>
+            <p style={{textAlign: "left"}}>
+              In react, don't use __dangerouslySetInnerHtml unless you have escaped required tags.
+            </p>
+            <p style={{textAlign: "left"}}>
+              In ERB don't html_safe and raw() unless you have escaped all the things.
+            </p>
           </Slide>
           <Slide transition={["zoom", "fade"]} bgColor="primary">
             <Heading caps fit>Flexible Layouts</Heading>
