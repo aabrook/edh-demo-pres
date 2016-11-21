@@ -36,15 +36,17 @@ require("spectacle/lib/themes/default/index.css");
 const images = {
   city: require("../assets/city.jpg"),
   kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png"),
   hackerHoodie: require("../assets/hacker-hacking-dark-hoodie.jpg"),
+  bobbyTables: require("../assets/bobbyTables.png"),
   epicDance: require("../assets/epic-smiley-dance.gif"),
   mindBlown: require("../assets/mindBlown.gif"),
   sad: require("../assets/sad.gif")
 }
 
-const codeExample = { escapeRb: require('raw!../assets/escape.example') }
+const codeExample = {
+  escapeRb: require('raw!../assets/escape.example'),
+  paramterized: require('raw!../assets/parameters.example')
+}
 preloader(images);
 
 const theme = createTheme({
@@ -88,6 +90,9 @@ export default class Presentation extends React.Component {
             <BlockQuote><Quote>Allowing execution of arbitrary SQL through unfiltered user input</Quote></BlockQuote>
           </Slide>
           <Slide transition={["slide"]}>
+            <Image src={images.bobbyTables.replace("/", "")} margin="0px auto 40px" />
+          </Slide>
+          <Slide transition={["slide"]}>
             <Heading>Is this still a thing?</Heading>
             <List>
               <Appear>
@@ -128,7 +133,7 @@ export default class Presentation extends React.Component {
             <Heading>
               <Appear><a href='http://localhost:1338/api/user?username="; select * from posts; -- lulz'>Show some lulz</a></Appear>
             </Heading>
-            <Appear><Image src={images.mindBlown.replace("/", "")} margin="0px auto 40px" height="500px"/></Appear>
+            <Appear><Image src={images.mindBlown.replace("/", "")} margin="40px auto 40px" height="300px"/></Appear>
           </Slide>
           <Slide transition={["zoom", "fade"]} bgColor="primary">
             <Heading>Bad example is bad</Heading>
@@ -143,6 +148,10 @@ export default class Presentation extends React.Component {
               <ListItem>Keep gems/modules up to date</ListItem>
               <Appear><ListItem>Escape</ListItem></Appear>
             </List>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading>Parameterized</Heading>
+            <CodePane lang="javascript" margin="20px auto" source={codeExample.paramterized} />
           </Slide>
           <Slide transition={["slide"]}>
             <Heading>Escape Example</Heading>
@@ -200,65 +209,9 @@ export default class Presentation extends React.Component {
               In ERB don't html_safe and raw() unless you have escaped all the things.
             </p>
           </Slide>
-          <Slide transition={["zoom", "fade"]} bgColor="primary">
-            <Heading caps fit>Flexible Layouts</Heading>
-            <Layout>
-              <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Left
-                </Heading>
-              </Fill>
-              <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Right
-                </Heading>
-              </Fill>
-            </Layout>
-          </Slide>
-          <Slide transition={["slide"]} bgColor="black">
-            <BlockQuote>
-              <Quote>Wonderfully formatted quotes</Quote>
-              <Cite>Ken Wheeler</Cite>
-            </BlockQuote>
-          </Slide>
-          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
-            <Heading caps fit size={1} textColor="primary">
-              Inline Markdown
-            </Heading>
-            <Markdown>
-              {`
-![Markdown Logo](${images.markdown.replace("/", "")})
-
-You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
-* Lists too!
-* With ~~strikethrough~~ and _italic_
-* And lets not forget **bold**
-              `}
-            </Markdown>
-          </Slide>
-          <Slide transition={["slide", "spin"]} bgColor="primary">
-            <Heading caps fit size={1} textColor="tertiary">
-              Smooth
-            </Heading>
-            <Heading caps fit size={1} textColor="secondary">
-              Combinable Transitions
-            </Heading>
-          </Slide>
-          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-            <List>
-              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
-              <Appear><ListItem>Autofit text</ListItem></Appear>
-              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
-              <Appear><ListItem>React-Router navigation</ListItem></Appear>
-              <Appear><ListItem>PDF export</ListItem></Appear>
-              <Appear><ListItem>And...</ListItem></Appear>
-            </List>
-          </Slide>
-          <Slide transition={["spin", "slide"]} bgColor="tertiary">
-            <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
-              Made with love in Seattle by
-            </Heading>
-            <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
+          <Slide transition={["slide"]}>
+            <Heading>Questions? Answers?</Heading>
+            <p><a href="http://edh.getitdn.com/users">http://edh.getitdn.com/users - Shitty App is Shitty</a></p>
           </Slide>
         </Deck>
       </Spectacle>
