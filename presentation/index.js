@@ -38,8 +38,11 @@ const images = {
   kat: require("../assets/kat.png"),
   hackerHoodie: require("../assets/hacker-hacking-dark-hoodie.jpg"),
   bobbyTables: require("../assets/bobbyTables.png"),
-  epicDance: require("../assets/epic-smiley-dance.gif"),
+  epicDance: require("../assets/wow.gif"),
   mindBlown: require("../assets/mindBlown.gif"),
+  explosion: require("../assets/explosion.jpg"),
+  micDrop: require("../assets/micDrop.gif"),
+  yay: require("../assets/yay.gif"),
   sad: require("../assets/sad.gif")
 }
 
@@ -50,7 +53,7 @@ const codeExample = {
 preloader(images);
 
 const theme = createTheme({
-  primary: "#ff4081"
+  primary: "#0DA74E"
 });
 
 export default class Presentation extends React.Component {
@@ -82,15 +85,15 @@ export default class Presentation extends React.Component {
               <Appear><ListItem>What is SQLi?</ListItem></Appear>
               <Appear><ListItem>It's 2016! Is this still a thing??</ListItem></Appear>
               <Appear><ListItem>How do we guard against it?</ListItem></Appear>
-              <Appear><ListItem><Image src={images.epicDance.replace("/", "")} margin="0px auto 40px" height="280px" /></ListItem></Appear>
             </List>
-          </Slide>
-          <Slide transition={["slide"]} bgColor="black">
-            <Heading>What is SQLi?</Heading>
-            <BlockQuote><Quote>Allowing execution of arbitrary SQL through unfiltered user input</Quote></BlockQuote>
+            <Appear><Image src={images.epicDance.replace("/", "")} margin="0px auto 40px" height="280px" /></Appear>
           </Slide>
           <Slide transition={["slide"]}>
-            <Image src={images.bobbyTables.replace("/", "")} margin="0px auto 40px" />
+            <Heading>What is SQLi?</Heading>
+            <BlockQuote style={{borderLeft: "1px solid #203A44"}}><Quote style={{color: "white"}}>Allowing execution of arbitrary SQL through unfiltered user input</Quote></BlockQuote>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Image src={images.bobbyTables.replace("/", "")} margin="0px auto 40px" height="300px" />
           </Slide>
           <Slide transition={["slide"]}>
             <Heading>Is this still a thing?</Heading>
@@ -140,7 +143,7 @@ export default class Presentation extends React.Component {
             <Heading><a href="http://localhost:1338/users">App</a></Heading>
           </Slide>
           <Slide transition={["slide"]}>
-            <Heading>How do we guard against it?</Heading>
+            <Heading fit>How do we guard against it?</Heading>
             <List>
               <ListItem>ORM</ListItem>
               <ListItem>Query parameters</ListItem>
@@ -152,6 +155,9 @@ export default class Presentation extends React.Component {
           <Slide transition={["slide"]}>
             <Heading>Parameterized</Heading>
             <CodePane lang="javascript" margin="20px auto" source={codeExample.paramterized} />
+          </Slide>
+          <Slide transition={["fade"]}>
+            <Image src={images.yay.replace("/", "")} margin="0px auto 40px" height="500px"/>
           </Slide>
           <Slide transition={["slide"]}>
             <Heading>Escape Example</Heading>
@@ -165,13 +171,15 @@ export default class Presentation extends React.Component {
             <Image src={images.sad.replace("/", "")} margin="0px auto 40px" height="500px"/>
           </Slide>
           <Slide transition={["slide"]}>
-            <Heading>XSS - Cross Site Scripting</Heading>
+            <Heading fit>XSS - Cross Site Scripting</Heading>
           </Slide>
           <Slide transition={["slide"]} bgColor="primary">
             <Heading>What is XSS?</Heading>
-            <p>
-              Cross-site scripting (XSS) is a type of computer security vulnerability typically found in web applications. XSS enables attackers to inject client-side scripts into web pages viewed by other users
-            </p>
+            <BlockQuote style={{borderLeft: "1px solid #203A44"}}>
+              <Quote style={{color: "white", fontSize: "48px"}}>
+                Cross-site scripting (XSS) is a type of computer security vulnerability typically found in web applications. XSS enables attackers to inject client-side scripts into web pages viewed by other users
+              </Quote>
+            </BlockQuote>
           </Slide>
           <Slide transition={["slide"]}>
             <Heading>Types of XSS</Heading>
@@ -196,9 +204,19 @@ export default class Presentation extends React.Component {
               window.location = 'http://download-my-game-plz.com'
               &lt;/script&gt;
             </CodePane>
+            <Appear>
+              <CodePane type="javascript">
+              &lt;script&gt;
+              alert(&apos;lulz BOOM!&apos;)
+              &lt;/script&gt;
+              </CodePane>
+            </Appear>
           </Slide>
           <Slide transition={["slide"]}>
-            <Heading>How do we stop it?</Heading>
+            <Image src={images.explosion.replace("/", "")} margin="0px auto 40px" height="500px"/>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading fit>How do we stop it?</Heading>
             <List>
               <ListItem>Escape all the things!</ListItem>
             </List>
@@ -210,8 +228,21 @@ export default class Presentation extends React.Component {
             </p>
           </Slide>
           <Slide transition={["slide"]}>
-            <Heading>Questions? Answers?</Heading>
+            <Heading fit>Escaping all the things still fails</Heading>
+            <p><a href="http://namb.la/popular/tech.html">MySpace XSS Worm</a></p>
+            <Appear><p>2005? I feel so old</p></Appear>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">But how is that possible? Aren&#39;t attackers cyber ninjas with zero days you need super firewalls and an office of security people to stop?</p>
+            </blockquote>
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">No, most &quot;attacks&quot; are incredibly stupid, send an email to 50,000 companies with a .wsf file attached that downloads an EXE from Moldova</p>&mdash; SwiftOnSecurity (@SwiftOnSecurity) <a href="https://twitter.com/SwiftOnSecurity/status/800037626145173504">November 19, 2016</a></blockquote>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading fit>Questions? Answers?</Heading>
             <p><a href="http://edh.getitdn.com/users">http://edh.getitdn.com/users - Shitty App is Shitty</a></p>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Image src={images.micDrop.replace("/", "")} margin="0px auto 40px" height="500px"/>
           </Slide>
         </Deck>
       </Spectacle>
